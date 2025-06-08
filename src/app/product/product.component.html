@@ -1,77 +1,12 @@
-<!-- <p class="text-styles">price: {{product.price}} </p>
-<p>Product Name : {{product.productName}} </p>
-<p>Stock Count : {{product.stockCount}} </p> -->
-
-<img [src]="imgURL">
-<p>Produt Name : {{productName}}</p>
-<p  appRedHighlight>Product Price : {{productPrice}}</p>
-
-<p>Discounted Price : {{ getDiscountedPrice() }}</p>
-
-<button [disabled]="getIsInStock()" appRedHighlight>Add to cart</button>
-<br>
-<br>
-<p appHighlight>  </p>
-<input [value]="inputValue" (input)="onTyping($event)">
-
-<p >{{inputValue}}</p>
-
-
-<p *ngFor="let number of numbers" appRedHighlight> Counting numbers : {{number}} </p>
-
-
-<div *ngIf="stockCount > 0">
-    <p>Product is In Stock</p>
-</div>
-
-<div *ngIf="stockCount < 0">
-    <p>Product is not In Stock</p>
-</div>
-
-<div *ngIf="productName === 'Cake'">
-    <p>We have Cakes!!!!!!!!!!!!!!</p>
-</div>
-
-<p> Using Control flow Syntax </p>
-
-@for(number of numbers; track $index) {
-    <p> Counting numbers : {{number}} </p>
-}
-
-@if (stockCount > 0) {
-    <p>Product is In Stock</p>
-} @else {
-    <p>Product is not in Stock</p>
-}
-
-
-@switch (stockCount) {
-    @case (0) {
-        <p>Product is Not in Stock</p>
-    }
-
-    @case (1) {
-        <p>only 1 item is left </p>
-    }
-
-    @default {
-        <p>Products are in stock</p>
-    }
-}
-
-
-
-
-<div [ngSwitch]="stockCount" appRedHighlight>
-    <p *ngSwitchCase="0"> Product is out of stock</p>
-    <p *ngSwitchCase="1">only 1 item is left </p>
-    <p *ngSwitchCase="2">Only 2 items left</p>
-    <p *ngSwitchDefault> We have more than 2 items</p>
-</div>
-
-<br>
-
-<input [(ngModel)]="secondInput">
-
-<p>Displaying Second Input : {{secondInput}}</p>
-
+<div class="card" style="width: 18rem;">
+    <img [src]="product.imgUrl" class="card-img-top" alt="product.productName" style="height: 200px;object-fit:cover;">
+    <div class="card-body">
+      <h5 class="card-title">{{product.productName}}</h5>
+      <p class="card-text">Price :<strong>{{product.price}}</strong></p>
+      <p class="card-text"><strong>{{product.discription}}</strong></p>
+      <p class="card-text">Stock :<strong>{{product.stockCount}}</strong></p>
+      <button href="#" class="btn btn-primary"
+      [disabled]="product.stockCount === 0"
+      (click)="addToCart()">Add To Cart</button>
+    </div>
+  </div>
