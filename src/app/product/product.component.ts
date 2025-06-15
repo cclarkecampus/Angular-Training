@@ -3,6 +3,7 @@ import { Product } from '../modals/product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RedHighlightDirective } from '../directives/red-highlight.directive';
+import { LoggerService } from '../services/logger.service';
 
 @Component({
   selector: 'app-product',
@@ -13,9 +14,15 @@ import { RedHighlightDirective } from '../directives/red-highlight.directive';
 })
 export class ProductComponent {
 
+  loggerService = new LoggerService();
+
   @Input() product!: Product;
 
   @Output() productOutput = new EventEmitter<Product>();
+
+  ngOnChanges() {
+    
+  }
 
   addToCart() {
     

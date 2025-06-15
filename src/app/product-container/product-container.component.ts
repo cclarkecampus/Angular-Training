@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './product-container.component.scss'
 })
 export class ProductContainerComponent {
-
+  
   products: Product[] = [
     {
       productName: 'Vanilla Cake',
