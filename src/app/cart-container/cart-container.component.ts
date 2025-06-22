@@ -10,6 +10,9 @@ import { CartService } from '../services/cart.service';
   standalone: true
 })
 export class CartContainerComponent {
-
   constructor(public cartService:CartService) {}
+
+  onRemoveItemOutput(index: number) {
+    this.cartService.removeItem(index);
+  }
 }

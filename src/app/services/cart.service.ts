@@ -5,19 +5,42 @@ import { Product } from '../modals/product';
   providedIn: 'root'
 })
 export class CartService {
-
-
+  
   public count = signal<number>(0);
 
   private cartItems = signal<Product[]>([]);
 
+  public totalItems = signal<number>(0);
 
   addToCart(product: Product) {
-    this.cartItems.update(items => [...items, product ]);
+
+    //to avoid refference issues, we create a new object
+    const productToAdd = {...product};
+
+    productToAdd.stockCount--;
+
+    this.cartItems.update(items => [...items, productToAdd ]);
+
+    product.stockCount--;
+
+    this.updateTotalItems();
   }
 
   getCartItems() {
     return this.cartItems();
+  }
+
+  updateTotalItems() {
+    this.totalItems.set(this.cartItems().length);
+  }
+
+  removeItem(index: number) {
+    this.cartItems.update(items => {
+      const newItems = [...items];
+      newItems.splice(index, 1);
+      return newItems;
+    });
+    this.updateTotalItems();
   }
 
   constructor() { }
