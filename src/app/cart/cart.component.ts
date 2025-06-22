@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { Product } from '../modals/product';
 
 @Component({
   selector: 'app-cart',
@@ -9,7 +10,8 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent {
 
-  constructor(public cartService: CartService) {
-    
-   }
+  @Input() cartItems: Product[] = []
+  
+  constructor() {
+  }
 }

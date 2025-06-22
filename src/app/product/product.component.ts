@@ -14,8 +14,6 @@ import { LoggerService } from '../services/logger.service';
 })
 export class ProductComponent {
 
-  loggerService = new LoggerService();
-
   @Input() product!: Product;
 
   @Output() productOutput = new EventEmitter<Product>();

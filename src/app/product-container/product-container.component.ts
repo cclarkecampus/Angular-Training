@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductComponent } from "../product/product.component";
 import { Product } from '../modals/product';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-container',
@@ -11,6 +12,9 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductContainerComponent {
   
+  constructor(public cartService:CartService) {}
+
+
   products: Product[] = [
     {
       productName: 'Vanilla Cake',
@@ -39,7 +43,7 @@ export class ProductContainerComponent {
   ];
 
   productOutPutEvent(product: Product) {
-    console.log('Clicked ' + product.productName);
+    this.cartService.addToCart(product);
   }
 
 }

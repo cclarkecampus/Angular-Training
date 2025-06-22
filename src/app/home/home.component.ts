@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input, input } from '@angular/core';
 import { LoggerService } from '../services/logger.service';
 import { CartService } from '../services/cart.service';
 
@@ -9,7 +9,7 @@ import { CartService } from '../services/cart.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
+  @Input() title: string = "Home Component";
    constructor(public cartService: CartService) {}
 
    loggerService = inject(LoggerService);
