@@ -3,7 +3,7 @@
   <div class="card-body">
     <h5 class="card-title">{{product.productName}}</h5>
     <p class="card-text"><strong>Price : </strong> {{product.price}}</p>
-    <p class="card-text"><strong>Description : </strong> {{product.description}}</p>
+    <p class="card-text description"><strong>Description : </strong> {{product.description}}</p>
     <p class="card-text"><strong>Stock : </strong> {{product.stockCount}}</p>
     <button class="btn btn-primary w-100" 
     [disabled]="product.stockCount === 0"

@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { CartService } from '../services/cart.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../modals/product';
 
 @Component({
@@ -11,7 +10,19 @@ import { Product } from '../modals/product';
 export class CartComponent {
 
   @Input() cartItems: Product[] = []
+
+  @Input() totalItems: number = 0;
+
+  @Output() removeItem = new EventEmitter<number>();
   
   constructor() {
   }
+
+
+  onRemoveClick(index:number) {
+   
+    this.removeItem.emit(index);
+  }
+
+
 }
