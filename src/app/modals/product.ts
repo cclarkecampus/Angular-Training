@@ -1,9 +1,14 @@
 
 
 export interface Product {
-    productName:string,
+    id:string,
+    title:string
     price: number,
-    stockCount: number,
+    category: string,
     description:string,
-    imgUrl?: string
+    image: string,
+    rating: {
+        rate: number,
+        count: number
+    }
 }
