@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
+import { WishlistService } from '../services/wishlist.service';
 
 @Component({
   selector: 'app-product-container',
@@ -13,8 +14,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './product-container.component.scss'
 })
 export class ProductContainerComponent {
-  
-  constructor(public cartService:CartService , private productService:ProductService) {}
+
+  constructor(public cartService:CartService , private productService:ProductService, public wishListService: WishlistService) {}
 
 
   products: Product[] = [];
@@ -27,10 +28,9 @@ export class ProductContainerComponent {
   }
 
   ngOnInit() {
+
       this.productService.getProducts().subscribe({
         next: (data) => {
-
-          this.categories = Array.from(new Set(data.map(product => product.category))) 
           this.products = data;
           this.filteredProducts = data
         },
@@ -38,6 +38,17 @@ export class ProductContainerComponent {
           alert("Request Failed " + err);
         }
       })
+
+      this.productService.getProductCategories().subscribe({
+        next: (data) => {
+          this.categories = data
+        },
+        error: (err) => {
+          alert("Request Failed" + err)
+        }
+      })
+      
+
   }
 
     filterByCategory(category: string) {
@@ -49,6 +60,10 @@ export class ProductContainerComponent {
         this.filteredProducts = this.products.filter(product => product.category === category);
       }
 
+  }
+
+  wishListOutPutEvent($event: Product) {
+      this.wishListService.addToWishlist($event);
   }
 
 

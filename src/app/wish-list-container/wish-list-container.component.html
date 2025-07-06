@@ -1,0 +1,4 @@
+<div class="container mt-4">
+    <app-wish-list [wishlistItems]="this.wishListService.getWishListItems()" (moveToShoppingCart)="onMoveToShoppingCart($event)" 
+    [totalItems]="this.wishListService.totalItems()"></app-wish-list>
+</div>

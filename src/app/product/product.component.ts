@@ -18,6 +18,8 @@ export class ProductComponent {
 
   @Output() productOutput = new EventEmitter<Product>();
 
+  @Output() wishlistOutput = new EventEmitter<Product>();
+
   ngOnChanges() {
     
   }
@@ -25,6 +27,10 @@ export class ProductComponent {
   addToCart() {
     
    this.productOutput.emit(this.product);
+  }
+
+  addToWishList() {
+    this.wishlistOutput.emit(this.product);
   }
 
 }
