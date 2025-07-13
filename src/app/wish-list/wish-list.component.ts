@@ -13,13 +13,13 @@ export class WishListComponent {
 
   @Input() totalItems: number = 0;
 
-  @Output() moveToShoppingCart = new EventEmitter<number>();
+  @Output() moveToShoppingCart = new EventEmitter<{index:number, product:Product}>();
 
 
 
-  moveToShoppingCartClick(index:number) {
+  moveToShoppingCartClick(indexNum:number) {
    
-    this.moveToShoppingCart.emit(index);
+    this.moveToShoppingCart.emit({index:indexNum, product:this.wishlistItems[indexNum]});
   }
 
 }

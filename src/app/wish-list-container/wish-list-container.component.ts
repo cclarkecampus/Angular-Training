@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { WishListComponent } from "../wish-list/wish-list.component";
 import { WishlistService } from '../services/wishlist.service';
+import { Product } from '../modals/product';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-wish-list-container',
@@ -10,10 +12,13 @@ import { WishlistService } from '../services/wishlist.service';
 })
 export class WishListContainerComponent {
 
-  constructor(public wishListService: WishlistService) {}
+  constructor(public wishListService: WishlistService, private cartService:CartService) {}
 
 
-  onMoveToShoppingCart($event: number) {
-        throw new Error('Method not implemented.');
-}
+  onMoveToShoppingCart($event: {index:number,product:Product}) {
+   
+    this.wishListService.removeItem($event.index);
+    this.cartService.addToCart($event.product);
+
+  }
 }
